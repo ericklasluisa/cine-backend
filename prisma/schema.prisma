@@ -1,0 +1,44 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Movie {
+  id        Int      @id @default(autoincrement())
+  title     String
+  room      Room     @relation(fields: [roomId], references: [id])
+  roomId    Int
+  seats     Seat[]
+}
+
+model Room {
+  id        Int     @id @default(autoincrement())
+  name      String
+  rows      Int
+  columns   Int
+  capacity  Int
+  movies    Movie[]
+  seats     Seat[]
+}
+
+model Seat {
+  id          Int       @id @default(autoincrement())
+  rowNumber   Int
+  columnNumber Int
+  status      String    @default("available") // available, selected, occupied
+  room        Room      @relation(fields: [roomId], references: [id])
+  roomId      Int
+  movie       Movie     @relation(fields: [movieId], references: [id])
+  movieId     Int
+  updatedAt   DateTime  @updatedAt
+}

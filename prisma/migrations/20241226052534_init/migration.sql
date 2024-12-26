@@ -1,0 +1,29 @@
+-- CreateTable
+CREATE TABLE "Movie" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "title" TEXT NOT NULL,
+    "roomId" INTEGER NOT NULL,
+    CONSTRAINT "Movie_roomId_fkey" FOREIGN KEY ("roomId") REFERENCES "Room" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- CreateTable
+CREATE TABLE "Room" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "name" TEXT NOT NULL,
+    "rows" INTEGER NOT NULL,
+    "columns" INTEGER NOT NULL,
+    "capacity" INTEGER NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "Seat" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "rowNumber" INTEGER NOT NULL,
+    "columnNumber" INTEGER NOT NULL,
+    "status" TEXT NOT NULL DEFAULT 'available',
+    "roomId" INTEGER NOT NULL,
+    "movieId" INTEGER NOT NULL,
+    "updatedAt" DATETIME NOT NULL,
+    CONSTRAINT "Seat_roomId_fkey" FOREIGN KEY ("roomId") REFERENCES "Room" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT "Seat_movieId_fkey" FOREIGN KEY ("movieId") REFERENCES "Movie" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
