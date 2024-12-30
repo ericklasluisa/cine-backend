@@ -16,6 +16,7 @@ datasource db {
 model Movie {
   id        Int      @id @default(autoincrement())
   title     String
+  imgUrl    String
   room      Room     @relation(fields: [roomId], references: [id])
   roomId    Int
   seats     Seat[]
@@ -26,7 +27,6 @@ model Room {
   name      String
   rows      Int
   columns   Int
-  capacity  Int
   movies    Movie[]
   seats     Seat[]
 }
