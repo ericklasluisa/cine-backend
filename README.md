@@ -13,20 +13,18 @@ Este proyecto es una aplicación backend para la gestión de un cine, que incluy
 ## Instalación
 
 ```bash
-$ npm install
+npm install
 ```
 
 ## Ejecutando la aplicación
 
 ```bash
-# desarrollo
-$ npm run start
+
+# Ejecutar migracion de prisma
+npx prisma migrate dev
 
 # modo watch
-$ npm run start:dev
-
-# producción
-$ npm run start:prod
+npm run start:dev
 ```
 
 ## Uso
@@ -53,3 +51,7 @@ $ npm run start:prod
 - Prisma
 - SqLite
 - Socket.io
+
+```
+
+```
