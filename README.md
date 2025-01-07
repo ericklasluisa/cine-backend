@@ -16,10 +16,13 @@ Este proyecto es una aplicación backend para la gestión de un cine, que incluy
 npm install
 ```
 
+## Variables de entorno
+
+Crear un archivo .env en la carpeta principal del proyecto con la variable: `DATABASE_URL="file:./dev.db"`
+
 ## Ejecutando la aplicación
 
 ```bash
-
 # Ejecutar migracion de prisma
 npx prisma migrate dev
 
@@ -51,7 +54,3 @@ npm run start:dev
 - Prisma
 - SqLite
 - Socket.io
-
-```
-
-```
